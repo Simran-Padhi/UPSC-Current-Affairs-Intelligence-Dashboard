@@ -41,7 +41,7 @@ def clean_data(df):
 
     # 3. Data Integrity Check: Filter out very short summaries or API noise
    # The 'r' before the quotes makes it a "Raw String" so the backslash is ignored
-df['Summary'] = df['Summary'].str.split(r' \[').str[0]
+    df['Summary'] = df['Summary'].str.split(r' \[').str[0]
     df = df[df['Summary'].str.len() > 20]
 
     final_count = len(df)
