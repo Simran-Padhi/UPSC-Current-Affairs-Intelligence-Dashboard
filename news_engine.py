@@ -1,3 +1,5 @@
+import nltk
+nltk.download('punkt_tab')
 import pandas as pd
 from newsapi import NewsApiClient
 from textblob import TextBlob
@@ -38,7 +40,8 @@ def clean_data(df):
     df = df.dropna(subset=['Summary'])
 
     # 3. Data Integrity Check: Filter out very short summaries or API noise
-    df['Summary'] = df['Summary'].str.split('\[').str[0] # Cleans truncated tags like [+123 chars]
+   # The 'r' before the quotes makes it a "Raw String" so the backslash is ignored
+df['Summary'] = df['Summary'].str.split(r' \[').str[0]
     df = df[df['Summary'].str.len() > 20]
 
     final_count = len(df)
