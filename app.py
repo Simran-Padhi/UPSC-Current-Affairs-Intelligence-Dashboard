@@ -33,7 +33,6 @@ with st.sidebar:
         "GS III: Environment", "GS IV: Ethics & Security", "General News"
     ]
     
-    # This variable 'selected_papers' is what we use to filter the data
     selected_papers = st.multiselect("Filter by GS Paper:", options=paper_options, default=paper_options)
 
 # 4. Main Dashboard Header
@@ -42,6 +41,7 @@ st.markdown("Filtered and categorized daily news signals for Civil Services prep
 
 if fetch_button:
     with st.spinner('Syncing data streams...'):
+        # Acquisition
         raw_data = fetch_upsc_news(user_query)
         
         if raw_data is not None:
@@ -50,14 +50,13 @@ if fetch_button:
             df = map_to_syllabus(df)
             df['Sentiment'] = df['Summary'].apply(get_sentiment)
             
-            # Step B: THE KEY FIX - Filter the data based on sidebar selection
+            # Step B: Filter the data based on sidebar selection
             filtered_df = df[df['Category'].isin(selected_papers)]
             
-            # 5. KPI Metrics (Using filtered_df)
+            # 5. KPI Metrics
             m_col1, m_col2, m_col3, m_col4 = st.columns(4)
             m_col1.metric("Total Articles", len(filtered_df))
             
-            # Calculate Relevance Rate (Signal vs Noise)
             signals = len(filtered_df[filtered_df['Category'] != 'General News'])
             m_col2.metric("Syllabus Signals", signals)
             
@@ -66,7 +65,7 @@ if fetch_button:
             
             st.markdown("### 📊 Syllabus Trend Analysis")
             
-            # 6. Aesthetic Charts (Using filtered_df)
+            # 6. Aesthetic Charts
             c_col1, c_col2 = st.columns([2, 1])
             with c_col1:
                 st.bar_chart(filtered_df['Category'].value_counts(), color="#1E293B")
@@ -76,7 +75,7 @@ if fetch_button:
 
             st.markdown("---")
             
-            # 7. Modern Data Table (Using filtered_df)
+            # 7. Modern Data Table
             st.subheader("📰 Daily Intelligence Briefing")
             st.dataframe(
                 filtered_df[['Category', 'Sentiment', 'Title', 'URL']],
@@ -89,10 +88,9 @@ if fetch_button:
                 hide_index=True
             )
         else:
-            st.error("Connection failed. Check your API key.")
+            st.error("No articles found or API connection failed.")
 
-# At the very end of app.py, outside of any 'if' blocks:
+# Default Welcome State
 else:
     st.info("👋 Welcome! Enter a topic in the sidebar and click 'Generate Feed' to start your intelligence briefing.")
-    # You can even add a nice image or subheader here
     st.image("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1000", caption="UPSC Intelligence Hub")
