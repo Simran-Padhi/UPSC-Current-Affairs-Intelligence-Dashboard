@@ -1,8 +1,18 @@
-import nltk
-nltk.download('punkt_tab')
 import pandas as pd
-from newsapi import NewsApiClient
 from textblob import TextBlob
+import os
+import nltk
+
+# Force download these specific packages
+try:
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt')
+    nltk.download('punkt_tab')
+
+# Add this line to tell TextBlob where to look
+os.environ['NLTK_DATA'] = '/home/appuser/nltk_data'
 
 # 1. Initialize the API
 newsapi = NewsApiClient(api_key='f01b108d33af4dbeaee122b566d35892')
