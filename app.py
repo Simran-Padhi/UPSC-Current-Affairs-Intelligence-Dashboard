@@ -90,3 +90,9 @@ if fetch_button:
             )
         else:
             st.error("Connection failed. Check your API key.")
+
+# At the very end of app.py, outside of any 'if' blocks:
+else:
+    st.info("👋 Welcome! Enter a topic in the sidebar and click 'Generate Feed' to start your intelligence briefing.")
+    # You can even add a nice image or subheader here
+    st.image("https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1000", caption="UPSC Intelligence Hub")
