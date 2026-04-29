@@ -29,7 +29,7 @@ To run this project locally:
 Clone the repository:
 
 Bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/Simran-Padhi/UPSC-Current-Affairs-Intelligence-Dashboard.git
 Install dependencies:
 
 Bash
@@ -38,7 +38,7 @@ Set up your API Key:
 Create a .streamlit/secrets.toml file and add:
 
 Ini, TOML
-NEWS_API_KEY = "your_api_key_here"
+NEWS_API_KEY = "f01b108d33af4dbeaee122b566d35892"
 Run the app:
 
 Bash
