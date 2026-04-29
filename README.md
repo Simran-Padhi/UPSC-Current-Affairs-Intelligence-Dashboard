@@ -4,6 +4,8 @@ A Python-powered NLP tool to filter noise and prioritize signals for Civil Servi
 📌 Project Overview
 Aspirants for the UPSC (Union Public Service Commission) exams often spend 2–3 hours daily scanning newspapers. A significant portion of this time is lost to irrelevant news. This project automates the curation process by fetching live news and using Natural Language Processing (NLP) to categorize articles directly into the UPSC Syllabus (GS Papers I, II, III, and IV).
 
+Check out the live dashboard here:https://upsc-current-affairs-intelligence-dashboard.streamlit.app/
+
 🚀 Key Features
 1.Smart Categorization: Uses keyword-based NLP to map articles to specific GS Papers (Economy, Polity, Environment, International Relations, etc.).
 2.Sentiment Analysis: Analyzes the "Editorial Tone" (Critical vs. Supportive) using TextBlob to help students understand different perspectives on policy issues.
@@ -40,8 +42,8 @@ Create a .streamlit/secrets.toml file and add:
 Ini, TOML
 NEWS_API_KEY = "f01b108d33af4dbeaee122b566d35892"
 Run the app:
-
 Bash
 streamlit run app.py
 📈 Analytical Insights
 During development, a key challenge was handling the ScriptRunContext in cloud environments. I resolved this by decoupling the Data Engine from the UI Controller, ensuring that the application remains stable and responsive during high-frequency API calls.
+
