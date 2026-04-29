@@ -1,4 +1,0 @@
-streamlit
-pandas
-textblob
-newsapi-python
